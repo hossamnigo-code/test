@@ -1,223 +1,253 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ScentSample | Luxury Decants</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --gold: #c5a059;
-            --dark: #1a1a1a;
-            --light: #f9f9f9;
-            --glass: rgba(255, 255, 255, 0.8);
-        }
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}
+  .ss-wrap{font-family:'Inter',sans-serif;color:var(--color-text-primary);max-width:100%;overflow-x:hidden}
+  .ss-nav{display:flex;justify-content:space-between;align-items:center;padding:16px 32px;border-bottom:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);position:sticky;top:0;z-index:100}
+  .ss-logo{font-family:'Playfair Display',serif;font-size:20px;letter-spacing:3px;text-transform:uppercase}
+  .ss-nav-links{display:flex;gap:24px;align-items:center}
+  .ss-nav-link{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:var(--color-text-secondary);cursor:pointer;font-weight:500}
+  .ss-cart-btn{background:var(--color-text-primary);color:var(--color-background-primary);border:none;padding:8px 18px;font-size:12px;font-weight:500;letter-spacing:1px;text-transform:uppercase;cursor:pointer;border-radius:4px}
+  .ss-hero{min-height:380px;background:linear-gradient(135deg,#1a1207 0%,#2d2010 40%,#1a1207 100%);display:flex;align-items:center;padding:48px 32px;position:relative;overflow:hidden}
+  .ss-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(197,160,89,0.15) 0%,transparent 70%)}
+  .ss-hero-content{max-width:500px;position:relative;z-index:1}
+  .ss-hero-eyebrow{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#c5a059;margin-bottom:16px;font-weight:500}
+  .ss-hero-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.2rem);line-height:1.15;color:#f5f0e8;margin-bottom:16px}
+  .ss-hero-title em{font-style:italic;color:#c5a059}
+  .ss-hero-sub{font-size:14px;color:rgba(245,240,232,0.6);line-height:1.7;margin-bottom:32px;font-weight:300}
+  .ss-hero-cta{display:inline-flex;align-items:center;gap:10px;background:#c5a059;color:#1a1207;padding:13px 28px;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:600;cursor:pointer;border:none;border-radius:4px}
+  .ss-hero-cta:hover{background:#d4b46a}
+  .ss-hero-stats{position:absolute;right:32px;bottom:32px;display:flex;gap:32px;z-index:1}
+  .ss-stat{text-align:center}
+  .ss-stat-num{font-family:'Playfair Display',serif;font-size:22px;color:#c5a059;display:block}
+  .ss-stat-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(245,240,232,0.4)}
+  .ss-filters{padding:24px 32px;display:flex;align-items:center;gap:12px;border-bottom:0.5px solid var(--color-border-tertiary);overflow-x:auto}
+  .ss-filter-label{font-size:11px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:1.5px;white-space:nowrap;margin-right:4px}
+  .ss-pill{padding:6px 16px;border:0.5px solid var(--color-border-secondary);border-radius:20px;font-size:12px;cursor:pointer;white-space:nowrap;background:var(--color-background-primary);color:var(--color-text-primary);transition:all 0.2s}
+  .ss-pill:hover,.ss-pill.active{background:var(--color-text-primary);color:var(--color-background-primary);border-color:var(--color-text-primary)}
+  .ss-main{padding:40px 32px}
+  .ss-section-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:28px}
+  .ss-section-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:400}
+  .ss-section-sub{font-size:12px;color:var(--color-text-secondary);letter-spacing:1px;text-transform:uppercase}
+  .ss-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1px;background:var(--color-border-tertiary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden}
+  .ss-card{background:var(--color-background-primary);padding:0;cursor:pointer;transition:background 0.2s;position:relative}
+  .ss-card:hover{background:var(--color-background-secondary)}
+  .ss-card-img{width:100%;height:240px;object-fit:cover;display:block}
+  .ss-card-img-placeholder{width:100%;height:240px;display:flex;align-items:center;justify-content:center;font-size:64px}
+  .ss-card-body{padding:20px}
+  .ss-card-brand{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:#c5a059;margin-bottom:4px;font-weight:600}
+  .ss-card-name{font-family:'Playfair Display',serif;font-size:17px;font-weight:400;margin-bottom:8px}
+  .ss-card-desc{font-size:12px;color:var(--color-text-secondary);line-height:1.6;margin-bottom:14px}
+  .ss-card-footer{display:flex;align-items:center;justify-content:space-between}
+  .ss-card-meta{display:flex;flex-direction:column;gap:2px}
+  .ss-card-size{font-size:10px;color:var(--color-text-secondary);letter-spacing:1px;text-transform:uppercase}
+  .ss-card-price{font-size:16px;font-weight:500}
+  .ss-add-btn{width:36px;height:36px;border:0.5px solid var(--color-border-secondary);border-radius:50%;background:var(--color-background-primary);color:var(--color-text-primary);font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;line-height:1;padding-bottom:2px}
+  .ss-add-btn:hover{background:var(--color-text-primary);color:var(--color-background-primary);border-color:var(--color-text-primary)}
+  .ss-add-btn.added{background:#c5a059;border-color:#c5a059;color:#fff;font-size:14px}
+  .ss-badge{position:absolute;top:14px;left:14px;background:#1a1207;color:#c5a059;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:4px 10px;border-radius:3px;font-weight:600}
+  .ss-badge.new{background:#c5a059;color:#1a1207}
+  .ss-featured{margin-top:1px;background:var(--color-background-secondary);border-top:0.5px solid var(--color-border-tertiary);border-bottom:0.5px solid var(--color-border-tertiary);padding:40px 32px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+  .ss-featured-eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#c5a059;margin-bottom:12px;font-weight:600}
+  .ss-featured-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.4rem);line-height:1.2;margin-bottom:16px}
+  .ss-featured-body{font-size:13px;color:var(--color-text-secondary);line-height:1.8;margin-bottom:24px}
+  .ss-featured-notes{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+  .ss-note-tag{font-size:11px;padding:5px 12px;border:0.5px solid var(--color-border-secondary);border-radius:20px;color:var(--color-text-secondary)}
+  .ss-featured-price-row{display:flex;align-items:center;gap:20px}
+  .ss-featured-price{font-family:'Playfair Display',serif;font-size:26px}
+  .ss-featured-btn{background:var(--color-text-primary);color:var(--color-background-primary);border:none;padding:11px 24px;font-size:11px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-weight:500;border-radius:4px}
+  .ss-featured-btn:hover{opacity:0.85}
+  .ss-featured-visual{background:linear-gradient(135deg,#f5f0e8,#ede3d0);border-radius:var(--border-radius-lg);height:300px;display:flex;align-items:center;justify-content:center;font-size:100px;position:relative;overflow:hidden}
+  .ss-featured-visual-bg{position:absolute;inset:0;background:radial-gradient(circle at 40% 60%,rgba(197,160,89,0.2),transparent 70%)}
+  .ss-cart-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--color-text-primary);color:var(--color-background-primary);padding:10px 20px;border-radius:4px;font-size:13px;opacity:0;transition:opacity 0.3s;pointer-events:none;white-space:nowrap;z-index:999}
+  .ss-cart-toast.show{opacity:1}
+  .ss-footer{padding:40px 32px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px;border-top:0.5px solid var(--color-border-tertiary)}
+  .ss-footer-brand{font-family:'Playfair Display',serif;font-size:18px;letter-spacing:2px;margin-bottom:10px}
+  .ss-footer-text{font-size:12px;color:var(--color-text-secondary);line-height:1.7}
+  .ss-footer-col-title{font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:600;margin-bottom:12px}
+  .ss-footer-item{font-size:12px;color:var(--color-text-secondary);margin-bottom:6px;cursor:pointer}
+  .ss-footer-item:hover{color:var(--color-text-primary)}
+  .ss-footer-bottom{padding:16px 32px;border-top:0.5px solid var(--color-border-tertiary);display:flex;justify-content:space-between;align-items:center}
+  .ss-footer-copy{font-size:11px;color:var(--color-text-secondary)}
+  .ss-trust{display:flex;gap:16px}
+  .ss-trust-item{font-size:10px;color:var(--color-text-secondary);letter-spacing:1px;text-transform:uppercase}
+  @media(max-width:600px){
+    .ss-nav{padding:12px 16px}.ss-hero{padding:32px 16px;min-height:300px}
+    .ss-hero-stats{display:none}.ss-main{padding:24px 16px}.ss-filters{padding:16px}
+    .ss-featured{grid-template-columns:1fr;gap:20px;padding:24px 16px}
+    .ss-footer{grid-template-columns:1fr;padding:24px 16px}
+    .ss-footer-bottom{flex-direction:column;gap:8px;padding:16px}
+  }
+</style>
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--light);
-            color: var(--dark);
-            line-height: 1.6;
-        }
-
-        /* Navigation */
-        nav {
-            padding: 20px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: white;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 24px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 60vh;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&q=80&w=1000');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
-
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            margin-bottom: 10px;
-        }
-
-        /* Product Grid */
-        .container {
-            max-width: 1200px;
-            margin: 50px auto;
-            padding: 0 20px;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 40px;
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        /* Product Card */
-        .card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid #eee;
-            position: relative;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
-
-        .card img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-        }
-
-        .card-content {
-            padding: 20px;
-            text-align: center;
-        }
-
-        .brand {
-            font-size: 12px;
-            text-transform: uppercase;
-            color: var(--gold);
-            letter-spacing: 2px;
-            margin-bottom: 5px;
-            font-weight: 600;
-        }
-
-        .fragrance-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
-
-        .price {
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-        }
-
-        .size-badge {
-            display: inline-block;
-            background: #f0f0f0;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 11px;
-            margin-bottom: 15px;
-        }
-
-        .btn {
-            display: block;
-            width: 100%;
-            padding: 12px;
-            background: var(--dark);
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: background 0.3s;
-        }
-
-        .btn:hover {
-            background: var(--gold);
-        }
-
-        footer {
-            text-align: center;
-            padding: 50px;
-            background: #f1f1f1;
-            margin-top: 50px;
-        }
-    </style>
-</head>
-<body>
-
-    <nav>
-        <div class="logo">ScentSample</div>
-        <div class="cart">Cart (0)</div>
-    </nav>
-
-    <header class="hero">
-        <h1>Discover Your Signature</h1>
-        <p>Premium 5ml & 10ml decants of the world's finest fragrances.</p>
-    </header>
-
-    <div class="container">
-        <h2 class="section-title">Best Sellers</h2>
-        
-        <div class="grid">
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=1000" alt="Perfume">
-                <div class="card-content">
-                    <div class="brand">Creed</div>
-                    <div class="fragrance-name">Aventus</div>
-                    <div class="size-badge">5ml Glass Decant</div>
-                    <div class="price">$25.00</div>
-                    <a href="#" class="btn">Add to Cart</a>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1583467875263-d50dec37a88c?q=80&w=1000" alt="Perfume">
-                <div class="card-content">
-                    <div class="brand">Parfums de Marly</div>
-                    <div class="fragrance-name">Layton</div>
-                    <div class="size-badge">5ml Glass Decant</div>
-                    <div class="price">$18.00</div>
-                    <a href="#" class="btn">Add to Cart</a>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1615485240384-58aa442e27c8?q=80&w=1000" alt="Perfume">
-                <div class="card-content">
-                    <div class="brand">Maison Francis Kurkdjian</div>
-                    <div class="fragrance-name">Baccarat Rouge 540</div>
-                    <div class="size-badge">5ml Glass Decant</div>
-                    <div class="price">$32.00</div>
-                    <a href="#" class="btn">Add to Cart</a>
-                </div>
-            </div>
-        </div>
+<div class="ss-wrap">
+  <nav class="ss-nav">
+    <div class="ss-logo">ScentSample</div>
+    <div class="ss-nav-links">
+      <span class="ss-nav-link">Shop</span>
+      <span class="ss-nav-link">Houses</span>
+      <span class="ss-nav-link">About</span>
+      <button class="ss-cart-btn" id="cartBtn">Cart (0)</button>
     </div>
+  </nav>
 
-    <footer>
-        <p>&copy; 2026 ScentSample Luxury Decants. All rights reserved.</p>
-        <p style="font-size: 12px; color: #888; margin-top: 10px;">Authentic fragrances, hand-decanted with precision.</p>
-    </footer>
+  <div class="ss-hero">
+    <div class="ss-hero-bg"></div>
+    <div class="ss-hero-content">
+      <div class="ss-hero-eyebrow">Luxury Fragrance Sampling</div>
+      <h1 class="ss-hero-title">Find your<br><em>signature</em><br>before you commit.</h1>
+      <p class="ss-hero-sub">Hand-decanted 5ml & 10ml vials of the world's rarest fragrances. No guesswork. No regret.</p>
+      <button class="ss-hero-cta">Explore Collection →</button>
+    </div>
+    <div class="ss-hero-stats">
+      <div class="ss-stat"><span class="ss-stat-num">400+</span><span class="ss-stat-label">Fragrances</span></div>
+      <div class="ss-stat"><span class="ss-stat-num">98%</span><span class="ss-stat-label">Authentic</span></div>
+      <div class="ss-stat"><span class="ss-stat-num">2-Day</span><span class="ss-stat-label">Shipping</span></div>
+    </div>
+  </div>
 
-</body>
-</html>
+  <div class="ss-filters">
+    <span class="ss-filter-label">Filter:</span>
+    <span class="ss-pill active" onclick="filterCards('all',this)">All</span>
+    <span class="ss-pill" onclick="filterCards('woody',this)">Woody</span>
+    <span class="ss-pill" onclick="filterCards('floral',this)">Floral</span>
+    <span class="ss-pill" onclick="filterCards('citrus',this)">Citrus</span>
+    <span class="ss-pill" onclick="filterCards('oriental',this)">Oriental</span>
+    <span class="ss-pill" onclick="filterCards('aquatic',this)">Aquatic</span>
+  </div>
+
+  <div class="ss-main">
+    <div class="ss-section-header">
+      <h2 class="ss-section-title">Best Sellers</h2>
+      <span class="ss-section-sub">Curated picks</span>
+    </div>
+    <div class="ss-grid" id="productGrid">
+    </div>
+  </div>
+
+  <div class="ss-featured">
+    <div>
+      <div class="ss-featured-eyebrow">Editor's Pick · This Month</div>
+      <h2 class="ss-featured-title">Baccarat Rouge 540</h2>
+      <p class="ss-featured-body">An otherworldly fusion of jasmine and saffron anchored by amberwood and fir resin. The scent that launched a thousand copies — experience the original.</p>
+      <div class="ss-featured-notes">
+        <span class="ss-note-tag">Jasmine</span>
+        <span class="ss-note-tag">Saffron</span>
+        <span class="ss-note-tag">Amberwood</span>
+        <span class="ss-note-tag">Fir Resin</span>
+        <span class="ss-note-tag">Cedar</span>
+      </div>
+      <div class="ss-featured-price-row">
+        <span class="ss-featured-price">$32</span>
+        <button class="ss-featured-btn" onclick="addFeatured()">Add to Cart</button>
+      </div>
+    </div>
+    <div class="ss-featured-visual">
+      <div class="ss-featured-visual-bg"></div>
+      <span style="position:relative;z-index:1">🧴</span>
+    </div>
+  </div>
+
+  <div class="ss-footer">
+    <div>
+      <div class="ss-footer-brand">ScentSample</div>
+      <p class="ss-footer-text">Premium decants sourced from authenticated full bottles. Every spray is the real thing — never reformulated, never diluted.</p>
+    </div>
+    <div>
+      <div class="ss-footer-col-title">Shop</div>
+      <div class="ss-footer-item">New Arrivals</div>
+      <div class="ss-footer-item">Best Sellers</div>
+      <div class="ss-footer-item">Niche Houses</div>
+      <div class="ss-footer-item">Sample Sets</div>
+      <div class="ss-footer-item">Gift Cards</div>
+    </div>
+    <div>
+      <div class="ss-footer-col-title">Help</div>
+      <div class="ss-footer-item">How Decanting Works</div>
+      <div class="ss-footer-item">Authenticity Promise</div>
+      <div class="ss-footer-item">Shipping & Returns</div>
+      <div class="ss-footer-item">Contact Us</div>
+    </div>
+  </div>
+  <div class="ss-footer-bottom">
+    <span class="ss-footer-copy">© 2026 ScentSample. All rights reserved.</span>
+    <div class="ss-trust">
+      <span class="ss-trust-item">Authentic</span>
+      <span class="ss-trust-item">Secure Checkout</span>
+      <span class="ss-trust-item">Hand-decanted</span>
+    </div>
+  </div>
+</div>
+
+<div class="ss-cart-toast" id="toast">Added to cart ✓</div>
+
+<script>
+const products=[
+  {id:1,brand:'Creed',name:'Aventus',desc:'Smoky pineapple, birch & oakmoss. The benchmark of modern masculinity.',size:'5ml · Glass Vial',price:'$25',category:'woody',badge:'Bestseller',emoji:'🫙'},
+  {id:2,brand:'Parfums de Marly',name:'Layton',desc:'Apple, violet & vanilla — a refined gentleman\'s powerhouse.',size:'5ml · Glass Vial',price:'$18',category:'floral',badge:null,emoji:'🫧'},
+  {id:3,brand:'MFK',name:'Baccarat Rouge 540',desc:'Jasmine, saffron & amberwood. Ethereal and unforgettable.',size:'5ml · Glass Vial',price:'$32',category:'oriental',badge:'Editor\'s Pick',badgeClass:'new',emoji:'🧴'},
+  {id:4,brand:'Acqua di Parma',name:'Colonia',desc:'Bergamot, lavender & sandalwood. Italian elegance in a vial.',size:'5ml · Glass Vial',price:'$14',category:'citrus',badge:null,emoji:'🌿'},
+  {id:5,brand:'Xerjoff',name:'Naxos',desc:'Tobacco, honey & iris — the richest oriental you\'ll ever try.',size:'10ml · Glass Vial',price:'$38',category:'oriental',badge:'Rare',emoji:'🫙'},
+  {id:6,brand:'Diptyque',name:'Philosykos',desc:'Fig tree bark, leaves & fruit. Fresh, woody and deeply green.',size:'5ml · Glass Vial',price:'$16',category:'woody',badge:null,emoji:'🌱'},
+];
+
+let cartCount=0;
+let activeFilter='all';
+const added={};
+
+function filterCards(cat,el){
+  activeFilter=cat;
+  document.querySelectorAll('.ss-pill').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  renderGrid();
+}
+
+function renderGrid(){
+  const grid=document.getElementById('productGrid');
+  const filtered=activeFilter==='all'?products:products.filter(p=>p.category===activeFilter);
+  grid.innerHTML=filtered.map(p=>`
+    <div class="ss-card" data-id="${p.id}">
+      ${p.badge?`<div class="ss-badge ${p.badgeClass||''}">${p.badge}</div>`:''}
+      <div class="ss-card-img-placeholder" style="background:var(--color-background-secondary)">${p.emoji}</div>
+      <div class="ss-card-body">
+        <div class="ss-card-brand">${p.brand}</div>
+        <div class="ss-card-name">${p.name}</div>
+        <div class="ss-card-desc">${p.desc}</div>
+        <div class="ss-card-footer">
+          <div class="ss-card-meta">
+            <span class="ss-card-size">${p.size}</span>
+            <span class="ss-card-price">${p.price}</span>
+          </div>
+          <button class="ss-add-btn ${added[p.id]?'added':''}" onclick="addToCart(${p.id},event)" title="Add to cart">${added[p.id]?'✓':'+'}</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  if(filtered.length===0){
+    grid.innerHTML='<div style="padding:40px;text-align:center;color:var(--color-text-secondary);font-size:13px;background:var(--color-background-primary)">No fragrances in this category yet.</div>';
+  }
+}
+
+function addToCart(id,e){
+  e.stopPropagation();
+  if(added[id])return;
+  added[id]=true;
+  cartCount++;
+  document.getElementById('cartBtn').textContent=`Cart (${cartCount})`;
+  showToast();
+  renderGrid();
+}
+
+function addFeatured(){
+  cartCount++;
+  document.getElementById('cartBtn').textContent=`Cart (${cartCount})`;
+  showToast();
+}
+
+function showToast(){
+  const t=document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2200);
+}
+
+renderGrid();
+</script>
