@@ -1,460 +1,307 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SILLAGE — Rare Perfume Samples</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<title>HB Bank — Modern Banking</title>
+<meta name="description" content="HB Bank — modern personal and business banking. Open an account, manage cards, loans and transfers online.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
 
-  :root {
-    --cream: #f5f0e8;
-    --sand: #e8dfd0;
-    --gold: #b8965a;
-    --gold-light: #d4af72;
-    --dark: #1a1410;
-    --charcoal: #2e2820;
-    --mid: #6b5e4e;
-    --light-mid: #9b8e7e;
-    --white: #faf8f4;
-    --accent: #8b3a2a;
-  }
+<!-- ── Utility bar ── -->
+<div class="topbar">
+  <div class="container">
+    <div class="topbar-left">
+      <span class="hotline" data-i18n="topbar.hotline">Hotline 19888</span>
+    </div>
+    <div class="topbar-right">
+      <a href="login.html" data-i18n="topbar.internetBanking">Internet Banking</a>
+      <button class="lang-btn" id="langToggle" data-i18n="lang.switch">العربية</button>
+    </div>
+  </div>
+</div>
 
-  html { scroll-behavior: smooth; }
+<!-- ── Navbar ── -->
+<header class="navbar">
+  <div class="container">
+    <a href="index.html" class="brand">
+      <span class="brand-mark">HB</span>
+      <span class="brand-text">
+        <span class="brand-name" data-i18n="brand.name">HB Bank</span>
+        <span class="brand-sub" data-i18n="login.brandSub">Internet Banking</span>
+      </span>
+    </a>
+    <nav class="nav-menu" id="navMenu">
+      <a href="#products" data-i18n="nav.personal">Personal</a>
+      <a href="#products" data-i18n="nav.business">Business</a>
+      <a href="#products" data-i18n="nav.accounts">Accounts</a>
+      <a href="#products" data-i18n="nav.cards">Cards</a>
+      <a href="#products" data-i18n="nav.loans">Loans</a>
+      <a href="#about" data-i18n="nav.about">About Us</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="login.html" class="btn btn-ghost" data-i18n="nav.login">Login</a>
+      <a href="login.html#signup" class="btn btn-primary" data-i18n="nav.openAccount">Open Account</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" data-i18n-aria="nav.personal" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
 
-  body {
-    font-family: 'Montserrat', sans-serif;
-    background: var(--cream);
-    color: var(--dark);
-    cursor: default;
-  }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 24px 60px;
-    background: rgba(245, 240, 232, 0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(184,150,90,0.2);
-    transition: padding 0.3s;
-  }
-  .nav-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 28px; letter-spacing: 6px; font-weight: 300;
-    color: var(--dark); text-decoration: none;
-  }
-  .nav-logo span { color: var(--gold); }
-  .nav-links { display: flex; gap: 36px; align-items: center; }
-  .nav-links a {
-    font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase;
-    text-decoration: none; color: var(--mid);
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--gold); }
-  .nav-admin-btn {
-    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
-    padding: 8px 18px; border: 1px solid var(--gold);
-    background: transparent; color: var(--gold);
-    cursor: pointer; transition: all 0.25s;
-  }
-  .nav-admin-btn:hover { background: var(--gold); color: var(--white); }
-
-  /* ── HERO ── */
-  .hero {
-    height: 100vh; display: flex; align-items: center;
-    padding: 0 60px; position: relative; overflow: hidden;
-  }
-  .hero-bg {
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse 80% 70% at 70% 50%, #e8d5b7 0%, var(--cream) 60%);
-  }
-  .hero-ornament {
-    position: absolute; right: 8%; top: 50%;
-    transform: translateY(-50%);
-    width: 420px; height: 420px;
-    border: 1px solid rgba(184,150,90,0.25);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .hero-ornament::before {
-    content: ''; position: absolute; inset: 30px;
-    border: 1px solid rgba(184,150,90,0.15); border-radius: 50%;
-  }
-  .hero-ornament-text {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 140px; color: rgba(184,150,90,0.12);
-    font-weight: 300; letter-spacing: -4px;
-    user-select: none;
-  }
-  .hero-content { position: relative; z-index: 1; max-width: 540px; }
-  .hero-tag {
-    font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 24px; display: block;
-  }
-  .hero-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(52px, 7vw, 88px);
-    font-weight: 300; line-height: 1.05;
-    color: var(--dark); margin-bottom: 28px;
-  }
-  .hero-title em { font-style: italic; color: var(--gold); }
-  .hero-sub {
-    font-size: 13px; line-height: 1.8; color: var(--mid);
-    max-width: 380px; margin-bottom: 48px;
-  }
-  .hero-cta {
-    display: inline-block; padding: 16px 48px;
-    background: var(--dark); color: var(--gold);
-    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
-    text-decoration: none; transition: all 0.3s;
-    border: 1px solid var(--dark);
-  }
-  .hero-cta:hover { background: transparent; color: var(--dark); }
-  .hero-scroll {
-    position: absolute; bottom: 40px; left: 60px;
-    font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
-    color: var(--light-mid); display: flex; align-items: center; gap: 12px;
-  }
-  .hero-scroll::before {
-    content: ''; width: 40px; height: 1px; background: var(--light-mid);
-  }
-
-  /* ── SECTION ── */
-  .section-header {
-    text-align: center; padding: 80px 60px 48px;
-  }
-  .section-tag {
-    font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 16px; display: block;
-  }
-  .section-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(36px, 5vw, 56px); font-weight: 300;
-    color: var(--dark);
-  }
-  .section-divider {
-    width: 60px; height: 1px; background: var(--gold);
-    margin: 20px auto 0;
-  }
-
-  /* ── PRODUCTS GRID ── */
-  #shop { padding-bottom: 100px; }
-  .products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 32px; padding: 0 60px;
-  }
-
-  .product-card {
-    background: var(--white);
-    border: 1px solid rgba(184,150,90,0.15);
-    position: relative; overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s;
-    animation: fadeUp 0.6s ease both;
-  }
-  .product-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 24px 60px rgba(26,20,16,0.12);
-  }
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  .product-img {
-    height: 220px; background: var(--sand);
-    display: flex; align-items: center; justify-content: center;
-    position: relative; overflow: hidden;
-  }
-  .product-img-placeholder {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 80px; color: rgba(184,150,90,0.3);
-    line-height: 1;
-  }
-  .product-badge {
-    position: absolute; top: 16px; left: 16px;
-    font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
-    padding: 5px 10px; background: var(--dark); color: var(--gold);
-  }
-  .product-body { padding: 24px; }
-  .product-house {
-    font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 8px;
-  }
-  .product-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px; font-weight: 400;
-    color: var(--dark); margin-bottom: 8px;
-  }
-  .product-notes {
-    font-size: 11px; color: var(--light-mid);
-    line-height: 1.6; margin-bottom: 16px; min-height: 36px;
-  }
-  .product-footer {
-    display: flex; align-items: center; justify-content: space-between;
-    padding-top: 16px; border-top: 1px solid var(--sand);
-  }
-  .product-size { font-size: 11px; color: var(--mid); letter-spacing: 1px; }
-  .product-price {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px; color: var(--dark);
-  }
-  .product-price span { font-size: 13px; color: var(--gold); margin-right: 2px; }
-  .product-add {
-    width: 100%; margin-top: 16px; padding: 12px;
-    background: var(--dark); color: var(--gold);
-    border: none; cursor: pointer;
-    font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase;
-    font-family: 'Montserrat', sans-serif;
-    transition: all 0.25s;
-  }
-  .product-add:hover { background: var(--gold); color: var(--dark); }
-
-  /* empty state */
-  .empty-state {
-    grid-column: 1/-1; text-align: center; padding: 80px 20px;
-  }
-  .empty-state-icon {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 80px; color: rgba(184,150,90,0.25);
-    display: block; margin-bottom: 20px;
-  }
-  .empty-state p {
-    font-size: 13px; color: var(--light-mid); letter-spacing: 1px;
-  }
-
-  /* ── ABOUT STRIP ── */
-  .about-strip {
-    background: var(--dark); padding: 80px 60px;
-    display: grid; grid-template-columns: 1fr 1fr;
-< truncated lines 231-610 >
-  { id:6, house:'Amouage', name:'Interlude Man', notes:'Oregano · Rockrose · Oud', price:16, size:'2ml', badge:'Rare', icon:'◉' },
-];
-
-let products = JSON.parse(localStorage.getItem('sillage_products') || 'null') || defaultProducts;
-let nextId = Math.max(...products.map(p => p.id), 0) + 1;
-
-function save() {
-  localStorage.setItem('sillage_products', JSON.stringify(products));
-}
-
-// ── RENDER PRODUCTS ────────────────────────────────────────────────────────
-function renderProducts() {
-  const grid = document.getElementById('productsGrid');
-  grid.innerHTML = '';
-  if (!products.length) {
-    grid.innerHTML = `<div class="empty-state">
-      <span class="empty-state-icon">◌</span>
-      <p>No products in the collection yet.<br>Add some via the Admin panel.</p>
-    </div>`;
-    return;
-  }
-  products.forEach((p, i) => {
-    const card = document.createElement('div');
-    card.className = 'product-card';
-    card.style.animationDelay = `${i * 0.08}s`;
-    card.innerHTML = `
-      <div class="product-img">
-        <div class="product-img-placeholder">${p.icon}</div>
-        ${p.badge ? `<span class="product-badge">${p.badge}</span>` : ''}
-      </div>
-      <div class="product-body">
-        <div class="product-house">${escHtml(p.house)}</div>
-        <div class="product-name">${escHtml(p.name)}</div>
-        <div class="product-notes">${escHtml(p.notes)}</div>
-        <div class="product-footer">
-          <span class="product-size">${p.size} sample</span>
-          <span class="product-price"><span>€</span>${p.price.toFixed(2)}</span>
+<!-- ── Hero ── -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <div class="slide active" data-slide="0">
+          <span class="hero-tag" data-i18n="hero1.tag">Personal Banking</span>
+          <h1 data-i18n="hero1.title">Banking that moves with you</h1>
+          <p data-i18n="hero1.sub">Open an HB account in minutes and manage your money anytime, anywhere.</p>
+          <div class="hero-actions">
+            <a href="login.html#signup" class="btn btn-light btn-lg" data-i18n="hero1.cta">Open an account</a>
+          </div>
         </div>
-        <button class="product-add" onclick="addToCart(${p.id})">Add to Cart</button>
-      </div>`;
-    grid.appendChild(card);
-  });
-}
-
-// ── ADMIN PRODUCT LIST ─────────────────────────────────────────────────────
-function renderAdminList() {
-  const list = document.getElementById('adminProductList');
-  list.innerHTML = '';
-  if (!products.length) {
-    list.innerHTML = '<p style="font-size:13px;color:var(--light-mid);padding:20px 0;">No products yet. Add some!</p>';
-    return;
-  }
-  products.forEach(p => {
-    const item = document.createElement('div');
-    item.className = 'admin-product-item';
-    item.id = `admin-item-${p.id}`;
-    item.innerHTML = `
-      <div class="admin-product-icon">${p.icon}</div>
-      <div class="admin-product-info">
-        <div class="admin-product-name">${escHtml(p.name)}</div>
-        <div class="admin-product-house">${escHtml(p.house)} · ${p.size}</div>
-      </div>
-      <div class="admin-product-price">€${p.price.toFixed(2)}</div>
-      <button class="admin-delete-btn" onclick="deleteProduct(${p.id})">Remove</button>`;
-    list.appendChild(item);
-  });
-}
-
-// ── CART ───────────────────────────────────────────────────────────────────
-function addToCart(id) {
-  const p = products.find(x => x.id === id);
-  if (!p) return;
-  const existing = cart.find(x => x.id === id);
-  if (existing) existing.qty++;
-  else cart.push({ ...p, qty: 1 });
-  updateCartBadge();
-  showToast(`${p.name} added to cart`, 'success');
-}
-
-function updateCartBadge() {
-  document.getElementById('cartCount').textContent = cart.reduce((s, i) => s + i.qty, 0);
-}
-
-function openCart() {
-  const items = document.getElementById('cartItems');
-  const total = document.getElementById('cartTotal');
-  const btn = document.getElementById('checkoutBtn');
-
-  if (!cart.length) {
-    items.innerHTML = '<p style="font-size:13px;color:var(--light-mid);text-align:center;padding:32px 0;">Your cart is empty.</p>';
-    total.textContent = '';
-    btn.style.display = 'none';
-  } else {
-    items.innerHTML = cart.map(c => `
-      <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--sand);">
-        <div>
-          <div style="font-size:13px;font-weight:500;">${escHtml(c.name)}</div>
-          <div style="font-size:10px;color:var(--light-mid);letter-spacing:1px;margin-top:3px;">${c.size} · ×${c.qty}</div>
+        <div class="slide" data-slide="1">
+          <span class="hero-tag" data-i18n="hero2.tag">HB Cards</span>
+          <h1 data-i18n="hero2.title">Smart cards, real rewards</h1>
+          <p data-i18n="hero2.sub">Earn cashback on everyday spending with a card designed around your life.</p>
+          <div class="hero-actions">
+            <a href="#products" class="btn btn-light btn-lg" data-i18n="hero2.cta">Explore cards</a>
+          </div>
         </div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:20px;">€${(c.price * c.qty).toFixed(2)}</div>
-      </div>`).join('');
-    const sum = cart.reduce((s, c) => s + c.price * c.qty, 0);
-    total.innerHTML = `<span style="font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--light-mid);margin-right:12px;">Total</span>€${sum.toFixed(2)}`;
-    btn.style.display = 'block';
-  }
-  document.getElementById('cartOverlay').classList.add('active');
-}
+        <div class="slide" data-slide="2">
+          <span class="hero-tag" data-i18n="hero3.tag">Finance</span>
+          <h1 data-i18n="hero3.title">Loans tailored to your goals</h1>
+          <p data-i18n="hero3.sub">Flexible personal, auto and home finance with fast approvals.</p>
+          <div class="hero-actions">
+            <a href="#products" class="btn btn-light btn-lg" data-i18n="hero3.cta">Discover loans</a>
+          </div>
+        </div>
+        <div class="hero-dots" id="heroDots">
+          <button class="active" data-dot="0" aria-label="Slide 1"></button>
+          <button data-dot="1" aria-label="Slide 2"></button>
+          <button data-dot="2" aria-label="Slide 3"></button>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-card back">
+          <div class="chip"></div>
+          <div class="pan">5421 •••• •••• 9008</div>
+          <div class="row"><span>HB PLATINUM</span><span>12/30</span></div>
+        </div>
+        <div class="hero-card front">
+          <div class="chip"></div>
+          <div class="pan">4012 •••• •••• 7745</div>
+          <div class="row"><span>HB CLASSIC</span><span>09/29</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-function checkout() {
-  closeOverlay('cartOverlay');
-  cart = [];
-  updateCartBadge();
-  showToast('Order placed! Thank you ✦', 'success');
-}
+<!-- ── Quick services ── -->
+<div class="container">
+  <div class="quick">
+    <div class="quick-grid">
+      <a class="quick-item" href="login.html#signup">
+        <span class="quick-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span>
+        <span data-i18n="quick.openAccount">Open Account</span>
+      </a>
+      <a class="quick-item" href="login.html">
+        <span class="quick-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M17 7H9M17 7v8"/></svg></span>
+        <span data-i18n="quick.transfer">Transfer Money</span>
+      </a>
+      <a class="quick-item" href="#products">
+        <span class="quick-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></span>
+        <span data-i18n="quick.cards">Cards</span>
+      </a>
+      <a class="quick-item" href="#products">
+        <span class="quick-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></span>
+        <span data-i18n="quick.loans">Loans</span>
+      </a>
+      <a class="quick-item" href="#rates">
+        <span class="quick-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h13l-3-3M21 17H8l3 3"/></svg></span>
+        <span data-i18n="quick.rates">Exchange Rates</span>
+      </a>
+      <a class="quick-item" href="#about">
+        <span class="quick-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-9 8.5 8.5 8.5 0 0 1-3.6-.8L3 21l1.3-3.9A8.38 8.38 0 0 1 3.5 11 8.5 8.5 0 0 1 12 3a8.38 8.38 0 0 1 9 8.5z"/></svg></span>
+        <span data-i18n="quick.support">Support</span>
+      </a>
+    </div>
+  </div>
+</div>
 
-// ── LOGIN ──────────────────────────────────────────────────────────────────
-function openLogin() {
-  if (isLoggedIn) { openAdmin(); return; }
-  document.getElementById('loginError').textContent = '';
-  document.getElementById('loginUser').value = '';
-  document.getElementById('loginPass').value = '';
-  document.getElementById('loginOverlay').classList.add('active');
-}
+<!-- ── Products ── -->
+<section class="section" id="products">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-tag" data-i18n="products.tag">What we offer</span>
+      <h2 data-i18n="products.title">Everything you need from your bank</h2>
+    </div>
+    <div class="product-grid">
+      <article class="product-card">
+        <div class="product-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10h18M5 6h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/></svg></div>
+        <h3 data-i18n="products.accounts.title">Accounts &amp; Deposits</h3>
+        <p data-i18n="products.accounts.desc">Current and savings accounts with competitive returns and zero hidden fees.</p>
+        <a href="login.html#signup" class="product-link"><span data-i18n="products.learnMore">Learn more</span> <span class="arrow">→</span></a>
+      </article>
+      <article class="product-card">
+        <div class="product-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg></div>
+        <h3 data-i18n="products.cards.title">Cards</h3>
+        <p data-i18n="products.cards.desc">Debit and credit cards with cashback, rewards and worldwide acceptance.</p>
+        <a href="login.html#signup" class="product-link"><span data-i18n="products.learnMore">Learn more</span> <span class="arrow">→</span></a>
+      </article>
+      <article class="product-card">
+        <div class="product-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></div>
+        <h3 data-i18n="products.loans.title">Loans &amp; Finance</h3>
+        <p data-i18n="products.loans.desc">Personal, auto and home finance with flexible tenors and fast approval.</p>
+        <a href="login.html#signup" class="product-link"><span data-i18n="products.learnMore">Learn more</span> <span class="arrow">→</span></a>
+      </article>
+      <article class="product-card">
+        <div class="product-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg></div>
+        <h3 data-i18n="products.digital.title">Digital Banking</h3>
+        <p data-i18n="products.digital.desc">Bank online and on mobile — transfers, payments and more, 24/7.</p>
+        <a href="login.html" class="product-link"><span data-i18n="products.learnMore">Learn more</span> <span class="arrow">→</span></a>
+      </article>
+    </div>
+  </div>
+</section>
 
-function doLogin() {
-  const u = document.getElementById('loginUser').value.trim();
-  const p = document.getElementById('loginPass').value;
-  if (u === CREDS.user && p === CREDS.pass) {
-    isLoggedIn = true;
-    closeOverlay('loginOverlay');
-    openAdmin();
-  } else {
-    document.getElementById('loginError').textContent = 'Invalid credentials. Please try again.';
-  }
-}
+<!-- ── Exchange rates ── -->
+<section class="section rates" id="rates">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-tag" data-i18n="rates.title">Exchange rates</span>
+      <h2 data-i18n="rates.title">Exchange rates</h2>
+      <p data-i18n="rates.subtitle">Indicative rates against the Egyptian Pound (EGP)</p>
+    </div>
+    <div class="rates-card">
+      <table class="rates-table">
+        <thead>
+          <tr>
+            <th data-i18n="rates.currency">Currency</th>
+            <th class="rates-num" data-i18n="rates.buy">Buy</th>
+            <th class="rates-num" data-i18n="rates.sell">Sell</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="rates-cur"><span class="rates-flag">$</span><span data-i18n="currency.USD">US Dollar</span></span></td><td class="rates-num">48.05</td><td class="rates-num">48.20</td></tr>
+          <tr><td><span class="rates-cur"><span class="rates-flag">€</span><span data-i18n="currency.EUR">Euro</span></span></td><td class="rates-num">52.10</td><td class="rates-num">52.35</td></tr>
+          <tr><td><span class="rates-cur"><span class="rates-flag">£</span><span data-i18n="currency.GBP">British Pound</span></span></td><td class="rates-num">61.40</td><td class="rates-num">61.70</td></tr>
+          <tr><td><span class="rates-cur"><span class="rates-flag">﷼</span><span data-i18n="currency.SAR">Saudi Riyal</span></span></td><td class="rates-num">12.80</td><td class="rates-num">12.88</td></tr>
+          <tr><td><span class="rates-cur"><span class="rates-flag">د.إ</span><span data-i18n="currency.AED">UAE Dirham</span></span></td><td class="rates-num">13.08</td><td class="rates-num">13.16</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="rates-note" data-i18n="rates.note">Rates are indicative and shown for demonstration purposes only.</p>
+  </div>
+</section>
 
-document.getElementById('loginPass').addEventListener('keydown', e => {
-  if (e.key === 'Enter') doLogin();
-});
+<!-- ── Why HB ── -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-tag" data-i18n="why.title">Why bank with HB</span>
+      <h2 data-i18n="why.title">Why bank with HB</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="why-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5l-8-3z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <h3 data-i18n="why.secure.title">Bank-grade security</h3>
+        <p data-i18n="why.secure.desc">Your money and data are protected with encryption and strict access controls.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <h3 data-i18n="why.support.title">24/7 support</h3>
+        <p data-i18n="why.support.desc">Our team is here around the clock, every day of the year.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.2-7-11a7 7 0 0 1 14 0c0 5.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+        <h3 data-i18n="why.network.title">Nationwide network</h3>
+        <p data-i18n="why.network.desc">Hundreds of branches and thousands of ATMs across the country.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m13 2-9 11h7l-2 9 9-11h-7l2-9z"/></svg></div>
+        <h3 data-i18n="why.fast.title">Instant transfers</h3>
+        <p data-i18n="why.fast.desc">Move money between accounts and to others in seconds.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-// ── ADMIN ──────────────────────────────────────────────────────────────────
-function openAdmin() {
-  renderAdminList();
-  adminTab('products');
-  document.getElementById('adminOverlay').classList.add('active');
-}
+<!-- ── Stats ── -->
+<section class="section stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div><div class="stat-num">2.5M+</div><div class="stat-label" data-i18n="stats.customers">Customers</div></div>
+      <div><div class="stat-num">320+</div><div class="stat-label" data-i18n="stats.branches">Branches</div></div>
+      <div><div class="stat-num">4,000+</div><div class="stat-label" data-i18n="stats.atms">ATMs</div></div>
+      <div><div class="stat-num">35</div><div class="stat-label" data-i18n="stats.years">Years of trust</div></div>
+    </div>
+  </div>
+</section>
 
-function closeAdmin() {
-  closeOverlay('adminOverlay');
-}
+<!-- ── CTA ── -->
+<section class="section cta-band">
+  <div class="container">
+    <div class="cta-inner">
+      <h2 data-i18n="cta.title">Ready to start banking smarter?</h2>
+      <p class="muted" data-i18n="cta.desc">Open your HB account today — it only takes a few minutes.</p>
+      <a href="login.html#signup" class="btn btn-primary btn-lg" data-i18n="cta.button">Open your account</a>
+    </div>
+  </div>
+</section>
 
-function doLogout() {
-  isLoggedIn = false;
-  closeAdmin();
-  showToast('Signed out');
-}
+<!-- ── Footer ── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="index.html" class="brand">
+          <span class="brand-mark">HB</span>
+          <span class="brand-text"><span class="brand-name" data-i18n="brand.name">HB Bank</span></span>
+        </a>
+        <p class="footer-tagline" data-i18n="footer.tagline">Modern banking for everyone. Secure, simple and always within reach.</p>
+      </div>
+      <div>
+        <h4 data-i18n="footer.col.banking">Banking</h4>
+        <ul class="footer-links">
+          <li><a href="#products" data-i18n="footer.accounts">Accounts</a></li>
+          <li><a href="#products" data-i18n="footer.cards">Cards</a></li>
+          <li><a href="#products" data-i18n="footer.loans">Loans</a></li>
+          <li><a href="login.html" data-i18n="footer.digital">Digital Banking</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="footer.col.company">Company</h4>
+        <ul class="footer-links">
+          <li><a href="#about" data-i18n="footer.about">About Us</a></li>
+          <li><a href="#about" data-i18n="footer.careers">Careers</a></li>
+          <li><a href="#about" data-i18n="footer.press">Newsroom</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="footer.col.support">Support</h4>
+        <ul class="footer-links">
+          <li><a href="#" data-i18n="footer.help">Help Center</a></li>
+          <li><a href="#" data-i18n="footer.branches">Branches &amp; ATMs</a></li>
+          <li><a href="#" data-i18n="footer.contact">Contact Us</a></li>
+          <li><a href="#" data-i18n="footer.security">Security</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span data-i18n="footer.rights">© 2026 HB Bank. All rights reserved.</span>
+      <span data-i18n="footer.disclaimer">HB Bank is a demonstration project and not a real financial institution.</span>
+    </div>
+  </div>
+</footer>
 
-function adminTab(tab) {
-  document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.admin-nav-item').forEach(n => n.classList.remove('active'));
-  document.getElementById(`admin-${tab}`).classList.add('active');
-  event.currentTarget && event.currentTarget.classList.add('active');
-  // fallback for non-event calls
-  document.querySelectorAll('.admin-nav-item').forEach(n => {
-    if (n.getAttribute('onclick') === `adminTab('${tab}')`) n.classList.add('active');
-  });
-}
-
-function deleteProduct(id) {
-  products = products.filter(p => p.id !== id);
-  save();
-  renderAdminList();
-  renderProducts();
-  showToast('Product removed', 'error');
-}
-
-function addProduct() {
-  const house = document.getElementById('ap-house').value.trim();
-  const name  = document.getElementById('ap-name').value.trim();
-  const notes = document.getElementById('ap-notes').value.trim();
-  const price = parseFloat(document.getElementById('ap-price').value);
-  const size  = document.getElementById('ap-size').value;
-  const badge = document.getElementById('ap-badge').value.trim();
-  const icon  = document.getElementById('ap-icon').value;
-
-  if (!house || !name || !price || price <= 0) {
-    showToast('Please fill in all required fields', 'error');
-    return;
-  }
-
-  const prod = { id: nextId++, house, name, notes, price, size, badge, icon };
-  products.push(prod);
-  save();
-  renderProducts();
-  renderAdminList();
-
-  // reset
-  ['ap-house','ap-name','ap-notes','ap-price','ap-badge'].forEach(id => document.getElementById(id).value = '');
-
-  showToast(`${name} added!`, 'success');
-  adminTab('products');
-}
-
-// ── UTILS ──────────────────────────────────────────────────────────────────
-function closeOverlay(id) {
-  document.getElementById(id).classList.remove('active');
-}
-document.querySelectorAll('.overlay').forEach(o => {
-  o.addEventListener('click', e => { if (e.target === o) o.classList.remove('active'); });
-});
-
-let toastTimer;
-function showToast(msg, type = '') {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.className = 'toast show ' + type;
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => t.className = 'toast', 2800);
-}
-
-function escHtml(s) {
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-
-// ── INIT ───────────────────────────────────────────────────────────────────
-renderProducts();
-</script>
+<script type="module" src="assets/js/marketing.js"></script>
 </body>
 </html>

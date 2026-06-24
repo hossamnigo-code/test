@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HB Bank — Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="dash-body">
+
+<!-- Top bar -->
+<header class="dash-topbar">
+  <div class="container">
+    <a href="dashboard.html" class="brand">
+      <span class="brand-mark">HB</span>
+      <span class="brand-text">
+        <span class="brand-name" data-i18n="brand.name">HB Bank</span>
+        <span class="brand-sub" data-i18n="dash.brandSub">Internet Banking</span>
+      </span>
+    </a>
+    <div class="dash-user">
+      <button class="lang-btn" id="langToggle" style="border-color:var(--line);color:var(--teal-700)" data-i18n="lang.switch">العربية</button>
+      <span class="dash-avatar" id="userAvatar">HB</span>
+      <span class="dash-user-name" id="userName">—</span>
+      <button class="btn btn-outline" id="logoutBtn" style="padding:8px 16px;font-size:14px" data-i18n="dash.logout">Log out</button>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div id="notConfigured" class="banner hide" style="margin-top:20px" data-i18n="common.notConfigured"></div>
+
+  <div class="dash-layout">
+    <!-- Sidebar -->
+    <aside class="dash-sidebar">
+      <nav class="dash-nav" id="dashNav">
+        <button class="active" data-panel="overview">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+          <span data-i18n="dash.nav.overview">Overview</span>
+        </button>
+        <button data-panel="transfer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4 3 8l4 4"/><path d="M3 8h14"/><path d="m17 20 4-4-4-4"/><path d="M21 16H7"/></svg>
+          <span data-i18n="dash.nav.transfer">Transfer</span>
+        </button>
+        <button data-panel="transactions">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+          <span data-i18n="dash.nav.transactions">Transactions</span>
+        </button>
+        <button data-panel="settings">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          <span data-i18n="dash.nav.settings">Settings</span>
+        </button>
+      </nav>
+    </aside>
+
+    <!-- Main -->
+    <main class="dash-main">
+
+      <!-- Overview -->
+      <section class="dash-panel active" id="panel-overview">
+        <div class="panel-head">
+          <h1><span data-i18n="dash.greeting">Welcome back</span>, <span id="greetName">—</span></h1>
+          <p class="muted" data-i18n="dash.acrossAccounts">Across all your accounts</p>
+        </div>
+
+        <div class="balance-hero">
+          <div class="label" data-i18n="dash.totalBalance">Total balance</div>
+          <div class="amount" id="totalBalance">—</div>
+          <div class="sub" data-i18n="dash.acrossAccounts">Across all your accounts</div>
+        </div>
+
+        <div class="panel-title"><h2 data-i18n="dash.yourAccounts">Your accounts</h2></div>
+        <div class="cards-grid" id="accountsGrid"></div>
+
+        <div class="panel" style="margin-top:24px">
+          <div class="panel-title">
+            <h2 data-i18n="dash.recent">Recent activity</h2>
+            <button class="btn btn-ghost" id="seeAllTx" style="font-size:14px;color:var(--teal-700)" data-i18n="dash.viewAll">View all</button>
+          </div>
+          <div style="overflow-x:auto">
+            <table class="tx-table" id="recentTable"><tbody></tbody></table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Transfer -->
+      <section class="dash-panel" id="panel-transfer">
+        <div class="panel-head">
+          <h1 data-i18n="transfer.title">Transfer money</h1>
+          <p class="muted" data-i18n="transfer.sub">Send money between your accounts or to another HB account.</p>
+        </div>
+        <div class="panel" style="max-width:560px">
+          <div id="transferMsg" class="form-msg"></div>
+          <form id="transferForm" novalidate>
+            <div class="field">
+              <label for="tf-from" data-i18n="transfer.from">From account</label>
+              <select id="tf-from"></select>
+            </div>
+            <div class="field">
+              <label for="tf-to" data-i18n="transfer.to">To account number</label>
+              <input type="text" id="tf-to" data-i18n-placeholder="transfer.toPlaceholder" autocomplete="off">
+            </div>
+            <div class="field">
+              <label for="tf-amount" data-i18n="transfer.amount">Amount (EGP)</label>
+              <input type="number" id="tf-amount" min="0.01" step="0.01" data-i18n-placeholder="transfer.amountPlaceholder">
+            </div>
+            <div class="field">
+              <label for="tf-desc" data-i18n="transfer.description">Description (optional)</label>
+              <input type="text" id="tf-desc" data-i18n-placeholder="transfer.descriptionPlaceholder">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block btn-lg" id="transferBtn" data-i18n="transfer.submit">Send transfer</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- Transactions -->
+      <section class="dash-panel" id="panel-transactions">
+        <div class="panel-head">
+          <h1 data-i18n="tx.title">Transaction history</h1>
+        </div>
+        <div class="panel">
+          <div class="panel-title">
+            <div class="field" style="margin:0;min-width:240px">
+              <label for="txFilter" data-i18n="tx.filter">Account</label>
+              <select id="txFilter"></select>
+            </div>
+          </div>
+          <div style="overflow-x:auto">
+            <table class="tx-table" id="txTable">
+              <thead>
+                <tr>
+                  <th data-i18n="tx.date">Date</th>
+                  <th data-i18n="tx.description">Description</th>
+                  <th data-i18n="tx.counterparty">Counterparty</th>
+                  <th class="rates-num" data-i18n="tx.amount">Amount</th>
+                  <th class="rates-num" data-i18n="tx.balance">Balance</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Settings -->
+      <section class="dash-panel" id="panel-settings">
+        <div class="panel-head">
+          <h1 data-i18n="settings.title">Settings</h1>
+          <p class="muted" data-i18n="settings.sub">Manage your profile and preferences.</p>
+        </div>
+        <div class="panel" style="max-width:560px">
+          <div id="settingsMsg" class="form-msg"></div>
+          <form id="settingsForm" novalidate>
+            <div class="field">
+              <label for="st-name" data-i18n="settings.fullName">Full name</label>
+              <input type="text" id="st-name" autocomplete="name">
+            </div>
+            <div class="field">
+              <label for="st-phone" data-i18n="settings.phone">Phone number</label>
+              <input type="tel" id="st-phone" autocomplete="tel">
+            </div>
+            <div class="field">
+              <label for="st-lang" data-i18n="settings.language">Preferred language</label>
+              <select id="st-lang">
+                <option value="en" data-i18n="settings.langEn">English</option>
+                <option value="ar" data-i18n="settings.langAr">Arabic</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg" id="settingsBtn" data-i18n="settings.save">Save changes</button>
+          </form>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<script type="module" src="assets/js/dashboard.js"></script>
+</body>
+</html>
