@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HB Bank — Internet Banking</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+<div class="auth-wrap">
+
+  <!-- Brand / value side -->
+  <aside class="auth-aside">
+    <a href="index.html" class="brand">
+      <span class="brand-mark">HB</span>
+      <span class="brand-text">
+        <span class="brand-name" style="color:#fff" data-i18n="brand.name">HB Bank</span>
+        <span class="brand-sub" style="color:var(--mint-100)" data-i18n="login.brandSub">Internet Banking</span>
+      </span>
+    </a>
+    <div>
+      <h2 data-i18n="login.welcome">Welcome back</h2>
+      <p data-i18n="login.signupSeed">Every new account starts with a demo balance so you can try transfers right away.</p>
+    </div>
+    <div class="auth-points">
+      <div class="auth-point">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5l-8-3z"/><path d="m9 12 2 2 4-4"/></svg>
+        <span data-i18n="why.secure.title">Bank-grade security</span>
+      </div>
+      <div class="auth-point">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m13 2-9 11h7l-2 9 9-11h-7l2-9z"/></svg>
+        <span data-i18n="why.fast.title">Instant transfers</span>
+      </div>
+      <div class="auth-point">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <span data-i18n="why.support.title">24/7 support</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Form side -->
+  <main class="auth-main">
+    <div class="auth-card">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+        <a href="index.html" class="btn-ghost" style="font-size:14px;font-weight:600;color:var(--teal-700)" data-i18n="login.backHome">← Back to home</a>
+        <button class="lang-btn" id="langToggle" style="border-color:var(--line);color:var(--teal-700)" data-i18n="lang.switch">العربية</button>
+      </div>
+
+      <a href="index.html" class="brand">
+        <span class="brand-mark">HB</span>
+        <span class="brand-text">
+          <span class="brand-name" data-i18n="brand.name">HB Bank</span>
+          <span class="brand-sub" data-i18n="login.brandSub">Internet Banking</span>
+        </span>
+      </a>
+
+      <div id="notConfigured" class="banner hide" data-i18n="common.notConfigured"></div>
+
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="tabSignin" data-i18n="login.tab.signin">Sign In</button>
+        <button class="auth-tab" id="tabSignup" data-i18n="login.tab.signup">Sign Up</button>
+      </div>
+
+      <div id="formMsg" class="form-msg"></div>
+
+      <!-- Sign in -->
+      <form class="auth-form active" id="signinForm" novalidate>
+        <div class="field">
+          <label for="si-email" data-i18n="login.email">Email address</label>
+          <input type="email" id="si-email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="si-pass" data-i18n="login.password">Password</label>
+          <input type="password" id="si-pass" autocomplete="current-password" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block btn-lg" id="signinBtn" data-i18n="login.signinBtn">Sign In</button>
+        <p class="form-note"><span data-i18n="login.noAccount">New to HB Bank?</span> <a href="#signup" id="goSignup" style="color:var(--teal-700);font-weight:600" data-i18n="login.tab.signup">Sign Up</a></p>
+      </form>
+
+      <!-- Sign up -->
+      <form class="auth-form" id="signupForm" novalidate>
+        <div class="field">
+          <label for="su-name" data-i18n="login.fullName">Full name</label>
+          <input type="text" id="su-name" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="su-email" data-i18n="login.email">Email address</label>
+          <input type="email" id="su-email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="su-phone" data-i18n="login.phone">Phone (optional)</label>
+          <input type="tel" id="su-phone" autocomplete="tel">
+        </div>
+        <div class="field">
+          <label for="su-pass" data-i18n="login.password">Password</label>
+          <input type="password" id="su-pass" autocomplete="new-password" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block btn-lg" id="signupBtn" data-i18n="login.signupBtn">Create Account</button>
+        <p class="form-note"><span data-i18n="login.haveAccount">Already have an account?</span> <a href="#signin" id="goSignin" style="color:var(--teal-700);font-weight:600" data-i18n="login.tab.signin">Sign In</a></p>
+      </form>
+    </div>
+  </main>
+</div>
+
+<script type="module" src="assets/js/login.js"></script>
+</body>
+</html>
