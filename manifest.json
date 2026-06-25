@@ -1,0 +1,44 @@
+{
+  "name": "HB Bank",
+  "short_name": "HB Bank",
+  "description": "Digital banking made simple — accounts, transfers, cards and more.",
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#0d9488",
+  "background_color": "#0b3b39",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [],
+  "categories": ["finance", "business"],
+  "shortcuts": [
+    {
+      "name": "Internet Banking",
+      "short_name": "Banking",
+      "description": "Go to your banking dashboard",
+      "url": "/dashboard.html",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Sign In",
+      "short_name": "Sign In",
+      "description": "Sign in to your account",
+      "url": "/login.html",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

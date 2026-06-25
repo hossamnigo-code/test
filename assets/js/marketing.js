@@ -1,6 +1,11 @@
 // HB Bank — marketing homepage interactions.
 import { initLang, toggleLang } from "./i18n.js";
 
+// Register service worker for PWA installability
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/sw.js").catch(() => {});
+}
+
 initLang();
 
 // Language toggle
