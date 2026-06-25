@@ -16,8 +16,15 @@ Security). No build step: plain HTML/CSS/JS that loads the Supabase SDK from a C
   - Overview with total balance and account cards
   - **Money transfers** (atomic, server-side; internal transfers credit the
     recipient instantly)
-  - **Transaction history** with per-account filtering
-  - Profile **settings**
+  - **Saved payees** — store frequent recipients and one-tap them into a transfer
+  - **Bill payments** — pay utilities and services straight from an account
+  - **Cards** — view virtual debit cards, reveal the number, freeze/unfreeze instantly
+  - **Savings goals** — set targets and move money aside with a progress bar
+  - **Spending insights** — money in vs out and top spending, computed from history
+  - **Transaction history** with per-account filtering and **CSV export**
+  - **Request money** — generate a shareable payment request with a QR code
+  - **Tools** — currency converter and loan calculator
+  - Profile **settings** and **change password**
 - **Bilingual & RTL** — switch between English and Arabic anywhere; layout
   mirrors and fonts swap automatically. Preference is saved.
 - **Teal/green** brand theme, fully responsive with a mobile nav.
@@ -69,16 +76,19 @@ assets/js/
   supabase.js  i18n.js  auth.js  marketing.js  login.js  dashboard.js
 supabase/migrations/
   0001_init.sql         Schema, RLS, sign-up trigger, transfer function
+  0002_features.sql     Cards, savings goals, bill-pay/goal/card-freeze RPCs
 ```
 
 ## Security model
 
 - **RLS is enabled on every table.** Users can read only their own profile,
   accounts, and transactions.
-- Balances are **never written from the client.** They change only through the
-  `transfer_funds()` database function, which verifies account ownership via
-  `auth.uid()`, checks the balance, and writes both sides of a transfer
-  atomically with row locks.
+- Balances are **never written from the client.** They change only through
+  `SECURITY DEFINER` functions — `transfer_funds()`, `pay_bill()` and
+  `contribute_to_goal()` — each of which verifies account ownership via
+  `auth.uid()`, checks the balance, and writes atomically with row locks.
+  Card freeze/unfreeze goes through `set_card_status()`, which only touches the
+  caller's own card.
 - The publishable key in `config.js` is safe to expose — it's designed for the
   browser; security is enforced by RLS, not by hiding the key.
 

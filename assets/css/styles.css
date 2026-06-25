@@ -330,8 +330,94 @@ ul { list-style: none; }
 @keyframes shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
 .hide { display: none !important; }
 
+/* ── Feature panels (payees, bills, cards, goals, insights, request, tools) ── */
+.feature-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-items: start; }
+
+/* Saved payees */
+.payee-list { display: flex; flex-direction: column; gap: 10px; }
+.payee { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px; border: 1px solid var(--line); border-radius: var(--radius-sm); transition: .15s; }
+.payee:hover { background: var(--mint-50); }
+.payee-info { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.payee-avatar { width: 40px; height: 40px; border-radius: 50%; flex: none; display: grid; place-items: center; background: var(--mint-100); color: var(--teal-700); font-weight: 700; font-size: 14px; }
+.payee-name { font-weight: 600; color: var(--ink); font-size: 14.5px; }
+.payee-acct { font-size: 12.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.payee-actions { display: flex; align-items: center; gap: 6px; flex: none; }
+.payee-actions .btn { padding: 8px 12px; font-size: 13.5px; color: var(--teal-700); }
+.icon-btn { background: transparent; border: none; cursor: pointer; color: var(--muted); padding: 8px; border-radius: 8px; display: grid; place-items: center; transition: .15s; }
+.icon-btn:hover { color: var(--danger); background: var(--danger-bg); }
+
+/* Virtual cards */
+.vcards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 22px; }
+.vcard-wrap { display: flex; flex-direction: column; gap: 12px; }
+.vcard { position: relative; border-radius: 16px; padding: 22px; color: #fff; min-height: 200px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 14px; overflow: hidden; background: linear-gradient(135deg, var(--teal-600), var(--teal-900)); transition: filter .2s; }
+.vcard.mastercard { background: linear-gradient(135deg, #3a3f4b, #0d1b1a); }
+.vcard.frozen { filter: grayscale(.75) brightness(.92); }
+.vcard-row1 { display: flex; justify-content: space-between; align-items: center; }
+.vcard-brand { font-weight: 700; letter-spacing: .5px; }
+.vcard-net { font-weight: 800; font-style: italic; letter-spacing: 1px; }
+.vcard-chip { width: 44px; height: 34px; border-radius: 7px; background: linear-gradient(135deg, var(--gold-soft), var(--gold)); }
+.vcard-num { font-size: 19px; letter-spacing: 2px; font-variant-numeric: tabular-nums; margin-top: auto; }
+.vcard-row2 { display: flex; justify-content: space-between; gap: 16px; }
+.vcard-cap { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; opacity: .8; }
+.vcard-val { font-size: 13px; font-weight: 600; }
+.vcard-frozen-badge { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-12deg); background: rgba(255,255,255,.92); color: var(--ink); font-weight: 800; padding: 6px 18px; border-radius: 8px; letter-spacing: 1px; text-transform: uppercase; font-size: 13px; }
+.vcard-meta { font-size: 12.5px; color: var(--muted); }
+.vcard-actions { display: flex; gap: 10px; }
+.vcard-actions .btn { flex: 1; padding: 10px; font-size: 14px; }
+
+/* Savings goals */
+.goals-list { display: grid; grid-template-columns: 1fr; gap: 16px; align-content: start; }
+.goal-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; }
+.goal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+.goal-name { font-weight: 700; color: var(--ink); font-size: 16px; }
+.goal-amounts { font-size: 15px; margin-bottom: 10px; }
+.goal-amounts strong { color: var(--teal-700); font-variant-numeric: tabular-nums; }
+.goal-bar { height: 10px; background: var(--line); border-radius: 999px; overflow: hidden; }
+.goal-bar-fill { height: 100%; background: linear-gradient(90deg, var(--teal-500), var(--teal-700)); border-radius: 999px; transition: width .4s ease; }
+.goal-bar-fill.done { background: linear-gradient(90deg, var(--gold), #8a6d28); }
+.goal-pct { font-size: 12.5px; color: var(--muted); margin-top: 6px; }
+.goal-add { display: flex; gap: 8px; margin-top: 14px; }
+.goal-add select { flex: 1; min-width: 0; }
+.goal-add input { width: 120px; }
+.goal-add select, .goal-add input { font: inherit; font-size: 14px; padding: 10px 12px; border: 1.5px solid var(--line); border-radius: var(--radius-sm); background: #fff; color: var(--ink); }
+.goal-add select:focus, .goal-add input:focus { outline: none; border-color: var(--teal-500); box-shadow: 0 0 0 3px rgba(20,184,166,.15); }
+.goal-add .btn { padding: 10px 16px; font-size: 14px; }
+
+/* Insights */
+.stat-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 22px; }
+.stat-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; border-inline-start: 4px solid var(--teal-500); }
+.stat-card.in { border-inline-start-color: var(--success); }
+.stat-card.out { border-inline-start-color: var(--danger); }
+.stat-card.net { border-inline-start-color: var(--teal-600); }
+.stat-card-label { font-size: 13px; color: var(--muted); }
+.stat-card-val { font-size: 24px; font-weight: 800; color: var(--ink); font-variant-numeric: tabular-nums; margin-top: 4px; }
+.bar-row { display: flex; align-items: center; gap: 12px; padding: 8px 0; }
+.bar-label { width: 130px; flex: none; font-size: 13.5px; color: var(--body); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bar-track { flex: 1; height: 12px; background: var(--line); border-radius: 999px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 999px; transition: width .4s ease; }
+.bar-fill.credit { background: var(--success); }
+.bar-fill.debit { background: var(--danger); }
+.bar-amt { width: 120px; flex: none; text-align: end; font-size: 13.5px; font-weight: 600; font-variant-numeric: tabular-nums; }
+
+/* Request money */
+.qr-box { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 4px 0 16px; }
+.qr-box svg { width: 180px; height: 180px; }
+.qr-cap { font-size: 12.5px; color: var(--muted); }
+.req-details { background: var(--mint-50); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 14px 16px; font-size: 14px; display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+.req-details > div { word-break: break-word; }
+
+/* Tools — results */
+.result-box { display: flex; align-items: center; justify-content: space-between; gap: 12px; background: linear-gradient(135deg, var(--teal-700), var(--teal-900)); color: #fff; border-radius: var(--radius-sm); padding: 16px 18px; margin-top: 8px; }
+.result-label { font-size: 13px; color: #cdeee9; }
+.result-value { font-size: 22px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.result-rows { margin-top: 12px; }
+.result-row { display: flex; justify-content: space-between; padding: 8px 2px; border-bottom: 1px solid var(--line); font-size: 14px; }
+.result-row:last-child { border-bottom: none; }
+.result-row strong { font-variant-numeric: tabular-nums; color: var(--ink); }
+
 /* ── Responsive ──────────────────────────────────────────────────────────── */
 @media (max-width: 980px) {
+  .feature-cols { grid-template-columns: 1fr; }
   .hero-inner { grid-template-columns: 1fr; }
   .hero-visual { display: none; }
   .quick-grid { grid-template-columns: repeat(3, 1fr); }
@@ -362,4 +448,10 @@ ul { list-style: none; }
   .footer-grid { grid-template-columns: 1fr; }
   .topbar-left .hotline { display: none; }
   .section { padding-block: 52px; }
+  .stat-cards { grid-template-columns: 1fr; }
+  .vcards-grid { grid-template-columns: 1fr; }
+  .bar-label { width: 90px; }
+  .bar-amt { width: 92px; }
+  .goal-add { flex-wrap: wrap; }
+  .goal-add input { width: 100%; }
 }

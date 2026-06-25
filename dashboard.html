@@ -45,9 +45,37 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4 3 8l4 4"/><path d="M3 8h14"/><path d="m17 20 4-4-4-4"/><path d="M21 16H7"/></svg>
           <span data-i18n="dash.nav.transfer">Transfer</span>
         </button>
+        <button data-panel="beneficiaries">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span data-i18n="dash.nav.beneficiaries">Payees</span>
+        </button>
+        <button data-panel="bills">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h4"/></svg>
+          <span data-i18n="dash.nav.bills">Pay Bills</span>
+        </button>
+        <button data-panel="cards">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2.5"/><path d="M2 10h20"/></svg>
+          <span data-i18n="dash.nav.cards">Cards</span>
+        </button>
+        <button data-panel="goals">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>
+          <span data-i18n="dash.nav.goals">Goals</span>
+        </button>
+        <button data-panel="insights">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="7" y="11" width="3" height="6"/><rect x="12" y="7" width="3" height="10"/><rect x="17" y="13" width="3" height="4"/></svg>
+          <span data-i18n="dash.nav.insights">Insights</span>
+        </button>
         <button data-panel="transactions">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
           <span data-i18n="dash.nav.transactions">Transactions</span>
+        </button>
+        <button data-panel="request">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v8"/><path d="m8 12 4 4 4-4"/></svg>
+          <span data-i18n="dash.nav.request">Request</span>
+        </button>
+        <button data-panel="tools">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8"/><path d="M8 10h.01M12 10h.01M16 10h.01M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/></svg>
+          <span data-i18n="dash.nav.tools">Tools</span>
         </button>
         <button data-panel="settings">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
@@ -99,6 +127,10 @@
               <label for="tf-from" data-i18n="transfer.from">From account</label>
               <select id="tf-from"></select>
             </div>
+            <div class="field hide" id="tf-ben-wrap">
+              <label for="tf-ben" data-i18n="ben.title">Saved payees</label>
+              <select id="tf-ben"></select>
+            </div>
             <div class="field">
               <label for="tf-to" data-i18n="transfer.to">To account number</label>
               <input type="text" id="tf-to" data-i18n-placeholder="transfer.toPlaceholder" autocomplete="off">
@@ -116,6 +148,204 @@
         </div>
       </section>
 
+      <!-- Beneficiaries / saved payees -->
+      <section class="dash-panel" id="panel-beneficiaries">
+        <div class="panel-head">
+          <h1 data-i18n="ben.title">Saved payees</h1>
+          <p class="muted" data-i18n="ben.sub">Save the people and accounts you pay often.</p>
+        </div>
+        <div class="feature-cols">
+          <div class="panel">
+            <div class="panel-title"><h2 data-i18n="ben.addTitle">Add a payee</h2></div>
+            <div id="benMsg" class="form-msg"></div>
+            <form id="benForm" novalidate>
+              <div class="field">
+                <label for="ben-name" data-i18n="ben.name">Payee name</label>
+                <input type="text" id="ben-name" data-i18n-placeholder="ben.namePlaceholder" autocomplete="off">
+              </div>
+              <div class="field">
+                <label for="ben-acct" data-i18n="ben.account">Account number</label>
+                <input type="text" id="ben-acct" data-i18n-placeholder="ben.accountPlaceholder" autocomplete="off">
+              </div>
+              <button type="submit" class="btn btn-primary btn-block" id="benBtn" data-i18n="ben.save">Save payee</button>
+            </form>
+          </div>
+          <div class="panel">
+            <div class="panel-title"><h2 data-i18n="ben.listTitle">Your payees</h2></div>
+            <div id="benList" class="payee-list"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pay Bills -->
+      <section class="dash-panel" id="panel-bills">
+        <div class="panel-head">
+          <h1 data-i18n="bills.title">Pay bills</h1>
+          <p class="muted" data-i18n="bills.sub">Settle utilities and services straight from your account.</p>
+        </div>
+        <div class="panel" style="max-width:560px">
+          <div id="billMsg" class="form-msg"></div>
+          <form id="billForm" novalidate>
+            <div class="field">
+              <label for="bill-biller" data-i18n="bills.biller">Biller</label>
+              <select id="bill-biller"></select>
+            </div>
+            <div class="field">
+              <label for="bill-from" data-i18n="bills.from">Pay from</label>
+              <select id="bill-from"></select>
+            </div>
+            <div class="field">
+              <label for="bill-ref" data-i18n="bills.reference">Reference / account</label>
+              <input type="text" id="bill-ref" data-i18n-placeholder="bills.referencePlaceholder" autocomplete="off">
+            </div>
+            <div class="field">
+              <label for="bill-amount" data-i18n="bills.amount">Amount (EGP)</label>
+              <input type="number" id="bill-amount" min="0.01" step="0.01" placeholder="0.00">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block btn-lg" id="billBtn" data-i18n="bills.pay">Pay bill</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- Cards -->
+      <section class="dash-panel" id="panel-cards">
+        <div class="panel-head">
+          <h1 data-i18n="cards.title">Your cards</h1>
+          <p class="muted" data-i18n="cards.sub">Manage your HB debit cards.</p>
+        </div>
+        <div class="vcards-grid" id="cardsGrid"></div>
+      </section>
+
+      <!-- Savings goals -->
+      <section class="dash-panel" id="panel-goals">
+        <div class="panel-head">
+          <h1 data-i18n="goals.title">Savings goals</h1>
+          <p class="muted" data-i18n="goals.sub">Set targets and move money aside to reach them.</p>
+        </div>
+        <div class="feature-cols">
+          <div class="panel" style="align-self:start">
+            <div class="panel-title"><h2 data-i18n="goals.createTitle">Create a goal</h2></div>
+            <div id="goalMsg" class="form-msg"></div>
+            <form id="goalForm" novalidate>
+              <div class="field">
+                <label for="goal-name" data-i18n="goals.name">Goal name</label>
+                <input type="text" id="goal-name" data-i18n-placeholder="goals.namePlaceholder" autocomplete="off">
+              </div>
+              <div class="field">
+                <label for="goal-target" data-i18n="goals.target">Target amount (EGP)</label>
+                <input type="number" id="goal-target" min="1" step="0.01" data-i18n-placeholder="goals.targetPlaceholder">
+              </div>
+              <button type="submit" class="btn btn-primary btn-block" id="goalBtn" data-i18n="goals.create">Create goal</button>
+            </form>
+          </div>
+          <div id="goalsList" class="goals-list"></div>
+        </div>
+      </section>
+
+      <!-- Spending insights -->
+      <section class="dash-panel" id="panel-insights">
+        <div class="panel-head">
+          <h1 data-i18n="insights.title">Spending insights</h1>
+          <p class="muted" data-i18n="insights.sub">A quick read on your money in and out.</p>
+        </div>
+        <div class="stat-cards" id="insightStats"></div>
+        <div class="panel">
+          <div class="panel-title"><h2 data-i18n="insights.flowTitle">In vs out</h2></div>
+          <div id="insightFlow"></div>
+        </div>
+        <div class="panel">
+          <div class="panel-title"><h2 data-i18n="insights.topTitle">Top spending</h2></div>
+          <div id="insightTop"></div>
+        </div>
+      </section>
+
+      <!-- Request money -->
+      <section class="dash-panel" id="panel-request">
+        <div class="panel-head">
+          <h1 data-i18n="request.title">Request money</h1>
+          <p class="muted" data-i18n="request.sub">Share a payment request so others can pay you instantly.</p>
+        </div>
+        <div class="feature-cols">
+          <div class="panel" style="align-self:start">
+            <form id="requestForm" novalidate>
+              <div class="field">
+                <label for="req-account" data-i18n="request.account">Deposit to</label>
+                <select id="req-account"></select>
+              </div>
+              <div class="field">
+                <label for="req-amount" data-i18n="request.amount">Amount (EGP)</label>
+                <input type="number" id="req-amount" min="0.01" step="0.01" placeholder="0.00">
+              </div>
+              <div class="field">
+                <label for="req-note" data-i18n="request.note">Note (optional)</label>
+                <input type="text" id="req-note" data-i18n-placeholder="request.notePlaceholder" autocomplete="off">
+              </div>
+              <button type="submit" class="btn btn-primary btn-block btn-lg" id="reqBtn" data-i18n="request.generate">Generate request</button>
+            </form>
+          </div>
+          <div class="panel hide" id="reqResult" style="align-self:start">
+            <div class="panel-title"><h2 data-i18n="request.linkTitle">Your payment request</h2></div>
+            <div class="qr-box" id="reqQr"></div>
+            <div class="req-details" id="reqDetails"></div>
+            <button class="btn btn-outline btn-block" id="reqCopyBtn" data-i18n="request.copy">Copy details</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tools: currency converter + loan calculator -->
+      <section class="dash-panel" id="panel-tools">
+        <div class="panel-head">
+          <h1 data-i18n="tools.title">Financial tools</h1>
+          <p class="muted" data-i18n="tools.sub">Handy calculators for everyday banking.</p>
+        </div>
+        <div class="feature-cols">
+          <div class="panel" style="align-self:start">
+            <div class="panel-title"><h2 data-i18n="conv.title">Currency converter</h2></div>
+            <div class="field">
+              <label for="conv-amount" data-i18n="conv.amount">Amount</label>
+              <input type="number" id="conv-amount" min="0" step="0.01" value="100">
+            </div>
+            <div class="form-grid">
+              <div class="field">
+                <label for="conv-from" data-i18n="conv.from">From</label>
+                <select id="conv-from"></select>
+              </div>
+              <div class="field">
+                <label for="conv-to" data-i18n="conv.to">To</label>
+                <select id="conv-to"></select>
+              </div>
+            </div>
+            <div class="result-box">
+              <span class="result-label" data-i18n="conv.result">Converted amount</span>
+              <span class="result-value" id="convResult">—</span>
+            </div>
+            <p class="muted" style="font-size:12.5px;margin-top:12px" data-i18n="conv.note">Based on indicative HB exchange rates.</p>
+          </div>
+          <div class="panel" style="align-self:start">
+            <div class="panel-title"><h2 data-i18n="loan.title">Loan calculator</h2></div>
+            <div class="field">
+              <label for="loan-amount" data-i18n="loan.amount">Loan amount (EGP)</label>
+              <input type="number" id="loan-amount" min="0" step="100" value="100000">
+            </div>
+            <div class="form-grid">
+              <div class="field">
+                <label for="loan-rate" data-i18n="loan.rate">Annual interest rate (%)</label>
+                <input type="number" id="loan-rate" min="0" step="0.1" value="12">
+              </div>
+              <div class="field">
+                <label for="loan-years" data-i18n="loan.years">Term (years)</label>
+                <input type="number" id="loan-years" min="1" step="1" value="5">
+              </div>
+            </div>
+            <div class="result-box">
+              <span class="result-label" data-i18n="loan.monthly">Monthly payment</span>
+              <span class="result-value" id="loanMonthly">—</span>
+            </div>
+            <div class="result-rows" id="loanExtra"></div>
+          </div>
+        </div>
+      </section>
+
       <!-- Transactions -->
       <section class="dash-panel" id="panel-transactions">
         <div class="panel-head">
@@ -127,6 +357,10 @@
               <label for="txFilter" data-i18n="tx.filter">Account</label>
               <select id="txFilter"></select>
             </div>
+            <button class="btn btn-outline" id="exportBtn" style="padding:10px 18px;font-size:14px;align-self:flex-end">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+              <span data-i18n="tx.export">Export CSV</span>
+            </button>
           </div>
           <div style="overflow-x:auto">
             <table class="tx-table" id="txTable">
@@ -172,6 +406,23 @@
             <button type="submit" class="btn btn-primary btn-lg" id="settingsBtn" data-i18n="settings.save">Save changes</button>
           </form>
         </div>
+
+        <div class="panel" style="max-width:560px">
+          <div class="panel-title"><h2 data-i18n="sec.title">Security</h2></div>
+          <p class="muted" style="margin-bottom:18px;font-size:14px" data-i18n="sec.sub">Change your account password.</p>
+          <div id="securityMsg" class="form-msg"></div>
+          <form id="securityForm" novalidate>
+            <div class="field">
+              <label for="sec-pass" data-i18n="sec.newPassword">New password</label>
+              <input type="password" id="sec-pass" autocomplete="new-password">
+            </div>
+            <div class="field">
+              <label for="sec-pass2" data-i18n="sec.confirmPassword">Confirm new password</label>
+              <input type="password" id="sec-pass2" autocomplete="new-password">
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg" id="securityBtn" data-i18n="sec.update">Update password</button>
+          </form>
+        </div>
       </section>
 
     </main>
@@ -179,6 +430,7 @@
 </div>
 
 <div class="toast" id="toast"></div>
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
 <script type="module" src="assets/js/dashboard.js"></script>
 </body>
 </html>
