@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" width="320" height="80">
+  <defs>
+    <linearGradient id="iconGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b4f4c"/>
+      <stop offset="100%" stop-color="#0d9488"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Icon square -->
+  <rect x="0" y="4" width="72" height="72" rx="16" fill="url(#iconGrad)"/>
+
+  <!-- H in icon -->
+  <rect x="12" y="18" width="6" height="44" rx="2" fill="#fff"/>
+  <rect x="42" y="18" width="6" height="44" rx="2" fill="#fff"/>
+  <rect x="12" y="37" width="36" height="7" rx="2" fill="#fff"/>
+
+  <!-- B in icon -->
+  <rect x="54" y="18" width="6" height="44" rx="2" fill="#fff"/>
+  <rect x="54" y="18" width="20" height="6" rx="2" fill="#fff"/>
+  <rect x="68" y="24" width="6" height="16" rx="3" fill="#fff"/>
+  <rect x="54" y="38" width="21" height="6" rx="2" fill="#fff"/>
+  <rect x="69" y="44" width="6" height="15" rx="3" fill="#fff"/>
+  <rect x="54" y="56" width="22" height="6" rx="2" fill="#fff"/>
+
+  <!-- "HB Bank" wordmark -->
+  <text x="88" y="46" font-family="Poppins, Arial, sans-serif" font-weight="700" font-size="28" fill="#0b3b39" letter-spacing="-0.5">HB Bank</text>
+  <!-- Tagline -->
+  <text x="89" y="64" font-family="Poppins, Arial, sans-serif" font-weight="400" font-size="12" fill="#0d9488" letter-spacing="2">DIGITAL BANKING</text>
+</svg>

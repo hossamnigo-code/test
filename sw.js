@@ -1,5 +1,5 @@
 // HB Bank — Service Worker (cache-first for static assets, network-first for API)
-const CACHE_NAME = "hbbank-v1";
+const CACHE_NAME = "hbbank-v2";
 
 const STATIC_ASSETS = [
   "/",
@@ -17,7 +17,10 @@ const STATIC_ASSETS = [
   "/assets/js/dashboard.js",
   "/icons/icon-192.png",
   "/icons/icon-512.png",
-  "/icons/apple-touch-icon.png"
+  "/icons/apple-touch-icon.png",
+  "/icons/favicon-64.png",
+  "/icons/logo.svg",
+  "/icons/logo-wide.svg"
 ];
 
 // Install: pre-cache all static assets
